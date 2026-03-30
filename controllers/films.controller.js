@@ -1,0 +1,1 @@
+//controllers/films.controller.js: contiene la lógica de cada endpoint.

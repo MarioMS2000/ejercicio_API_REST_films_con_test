@@ -12,14 +12,15 @@ https://www.omdbapi.com/
 
 Para mantener todo organizado, vamos a utilizar una estructura de carpetas específica:
 
--   `app.js`
+-   `app.js` -> crea Express, configura middlewares, monta rutas y maneja errores.
 -   `utils/`
-    -   `fetchFilms.js`
+    -   `fetchFilms.js` -> utils/fetchFilms.js: se encarga de hablar con la API externa.
 -   `routes/`
-    -   `films.routes.js`
+    -   `films.routes.js` -> routes/films.routes.js: define las URLs y qué controlador ejecuta cada una.
 -   `controllers/`
-    -   `films.controller.js`
+    -   `films.controller.js` -> controllers/films.controller.js: contiene la lógica de cada endpoint.
 -   `.env`: Este archivo, en la raíz del proyecto, te permitirá manejar variables de entorno.
+            Y guarda la API_KEY para no hardcodearla.
 -   `.env.example`: Este archivo representa el ejemplo para rellenar el fichero .env.
 -   `package.json`: Aquí se encuentran las dependencias y scripts de tu proyecto.
 -   `*.test.js`: Archivos de prueba. Te ayudarán a verificar que tu código hace lo que debe.
