@@ -1,0 +1,179 @@
+Utils hace esto: (CÓMO lo consigo)
+
+Utils = cocina 
+    harina
+    tomate
+    queso
+    horno
+    cocinar
+    emplatar
+
+    harina + tomate + horno 200°
+
+Controllers: (QUÉ quiero)
+    Controller = camarero 
+    El camarero dice: "una pizza"
+
+Resumen:
+Archivo	    Responsabilidad
+
+utils	        datos
+controller	    HTTP
+routes	        endpoints
+app	            servidor
+
+
+EJEMPLO:
+
+    Utils = cocina
+
+        mirar receta (URL OMDb)
+        coger ingredientes (API_KEY)
+        preparar ingredientes (encode title)
+        cocinar (fetch API)
+        probar comida (validar Response)
+        emplatar (return data)
+
+        harina + tomate + horno 200°
+
+        En mi código:
+            fetchFilms(title)
+
+                Y dentro pasa:
+
+                construir URL
+                usar API key
+                hacer fetch
+                convertir JSON
+                comprobar error
+                devolver datos
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Controller → QUÉ quiero
+    Controller = camarero
+
+    El camarero dice:
+        "una pizza Titanic"
+    
+    En mi código:
+
+        const film = await fetchFilms(title);
+
+        El controller no sabe:
+
+            cómo se llama OMDb
+            cómo funciona fetch
+            cómo construir URL
+
+        Solo dice:
+
+            "dame la película Titanic"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Routes → CUÁNDO lo quiero
+
+    Routes = el cliente pide
+
+    Cliente:
+        "quiero una pizza Titanic"
+
+    Código:
+
+        router.get('/film/:title', getFilmByTitle);
+
+    Traducción:
+
+        Si alguien pide pizza → llama al camarero
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+App.js → RESTAURANTE
+
+    Esto sería el restaurante entero:
+
+        App.js = restaurante
+
+            abre el restaurante
+            organiza mesas
+            dirige clientes
+            manda pedidos al camarero
+
+        Código:
+
+            app.use('/api', filmsRoutes);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Mi API funciona así:
+
+    Cliente entra al restaurante
+            ↓
+    app.js recibe cliente
+            ↓
+    routes mira qué quiere
+            ↓
+    controller toma el pedido
+            ↓
+    utils cocina
+            ↓
+    controller sirve plato
+            ↓
+    routes entrega pedido
+            ↓
+    cliente recibe comida
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Versión completa del ejemplo:
+
+    APP → RESTAURANTE
+
+    ROUTES → CLIENTE HACE PEDIDO
+    "quiero pizza Titanic"
+
+    CONTROLLER → CAMARERO
+    "pizza Titanic"
+
+    UTILS → COCINA
+    harina
+    tomate
+    queso
+    horno
+    cocinar
+    emplatar
+
+    UTILS devuelve plato
+
+    CONTROLLER entrega plato
+
+    CLIENTE recibe pizza
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////    
+
+Traducción de como sería en mi código:
+
+    Cliente → GET /api/film/Titanic
+
+    app.js → recibe request
+
+    routes → router.get()
+
+    controller → getFilmByTitle()
+
+    utils → fetchFilms()
+
+    OMDb → datos
+
+    controller → res.json()
+
+    cliente → JSON respuesta
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+APP = RESTAURANTE
+ROUTES = MAPA
+CONTROLLER = CAMARERO
+UTILS = COCINA
+API EXTERNA = PROVEEDOR

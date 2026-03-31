@@ -4,6 +4,9 @@ const express = require('express');
 require('dotenv').config();
 console.log(process.env.API_KEY);
 
+// Traemos el router que exportaste de routes del fichero films.routes.js
+const filmsRoutes = require('./routes/films.routes');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -17,8 +20,7 @@ app.use(express.json());// Habilitar recepción de JSON por mi backend , parsear
 
 // Rutas
 //API
-//app.use('/api/books',booksRoutes); // Habilitar rutas | promer parametro es un prefijo
-//app.use('/api/products',productsRoutes);
+app.use('/api', filmsRoutes); // Habilitar rutas: significa, /api → usar filmsRoutes
 
 //http://localhost:3000
 app.listen(port, () => {
